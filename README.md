@@ -51,14 +51,14 @@ has_one: address
 
 ## Addressesテーブル
 
-|Column       |Type|Options|
-|-------------|----|-------|
-|post_code    |integer     |
-|prefecture   |string      |
-|municipality |string      |
-|house_number |string      |
-|building_name|string      |
-|phone_number |integer     |
+|Column        |Type----|Options     |
+|--------------|--------|------------|
+|post_code     |integer |null: false |
+|prefecture    |string  |null: false |
+|municipality  |string  |null: false |
+|house_number  |string  |null: false |
+|building_name |string  |            |
+|phone_number  |integer |null: false |
 
 ### Association
 belomgs_to: purchase
