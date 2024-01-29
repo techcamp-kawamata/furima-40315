@@ -30,7 +30,7 @@ has_many :purchases
 |region_id        |integer    |null: false                    |
 |delivery_time_id |integer    |null: false                    |
 |price            |integer    |null: false                    |
-|user_id          |references |null: false, foreign_key: true |
+|user             |references |null: false, foreign_key: true |
 
 ※imageはActiveStrageで実装するため含まない
 
