@@ -15,7 +15,7 @@
 
 ### Association
 has_many :items
-has_many :purchasers
+has_many :purchases
 
 
 ## Itemsテーブル
@@ -23,7 +23,7 @@ has_many :purchasers
 |Column           |Type    |Options     |
 |-----------------|--------|------------|
 |item_name        |string  |null: false |
-|text             |text    |null: false |
+|detail           |text    |null: false |
 |category_id      |integer |null: false |
 |condition_id     |integer |null: false |
 |postage_id       |integer |null: false |
@@ -35,10 +35,10 @@ has_many :purchasers
 
 ### Association
 belongs_to: user
-has_one: purchaser
+has_one: purchase
 
 
-## Purchasersテーブル
+## Purchasesテーブル
 
 |Column  |Type       |Options                        |
 |--------|-----------|-------------------------------|
@@ -56,13 +56,13 @@ has_one: address
 |Column        |Type       |Options                        |
 |--------------|-----------|-------------------------------|
 |post_code     |string     |null: false                    |
-|prefecture_id |integer    |null: false                    |
+|region_id     |integer    |null: false                    |
 |municipality  |string     |null: false                    |
 |house_number  |string     |null: false                    |
 |building_name |string     |                               |
 |phone_number  |string     |null: false                    |
-|user_id       |references |null: false, foreign_key: true |
-|item_id       |references |null: false, foreign_key: true |
+|purchase_id   |references |null: false, foreign_key: true |
+
 
 ### Association
-belongs_to: purchaser
+belongs_to: purchase
