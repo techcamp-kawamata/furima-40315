@@ -33,7 +33,7 @@ has_many :purchasers
 
 ### Association
 belongs_to: user
-has_one: purchase
+has_one: purchaser
 
 
 ## Purchasersテーブル
@@ -61,4 +61,4 @@ has_one: address
 |phone_number  |integer |null: false |
 
 ### Association
-belongs_to: purchase
+belongs_to: purchaser
