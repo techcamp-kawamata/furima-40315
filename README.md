@@ -32,7 +32,7 @@ has_many :purchasers
 ※imageはActiveStrageで実装するため含まない
 
 ### Association
-belomgs_to: user
+belongs_to: user
 has_one: purchase
 
 
@@ -61,4 +61,4 @@ has_one: address
 |phone_number  |integer |null: false |
 
 ### Association
-belomgs_to: purchase
+belongs_to: purchase
