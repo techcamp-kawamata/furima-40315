@@ -20,16 +20,17 @@ has_many :purchases
 
 ## Itemsテーブル
 
-|Column           |Type    |Options     |
-|-----------------|--------|------------|
-|item_name        |string  |null: false |
-|detail           |text    |null: false |
-|category_id      |integer |null: false |
-|condition_id     |integer |null: false |
-|postage_id       |integer |null: false |
-|region_id        |integer |null: false |
-|delivery_time_id |integer |null: false |
-|price            |integer |null: false |
+|Column           |Type       |Options                        |
+|-----------------|-----------|-------------------------------|
+|item_name        |string     |null: false                    |
+|detail           |text       |null: false                    |
+|category_id      |integer    |null: false                    |
+|condition_id     |integer    |null: false                    |
+|postage_id       |integer    |null: false                    |
+|region_id        |integer    |null: false                    |
+|delivery_time_id |integer    |null: false                    |
+|price            |integer    |null: false                    |
+|user_id          |references |null: false, foreign_key: true |
 
 ※imageはActiveStrageで実装するため含まない
 
@@ -61,7 +62,7 @@ has_one: address
 |house_number  |string     |null: false                    |
 |building_name |string     |                               |
 |phone_number  |string     |null: false                    |
-|purchase_id   |references |null: false, foreign_key: true |
+|purchase      |references |null: false, foreign_key: true |
 
 
 ### Association
