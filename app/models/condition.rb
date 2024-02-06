@@ -12,9 +12,4 @@ class Condition < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-
-  include ActiveModel::Validations
-  validates :condition_id, :integer, presence: true
-  validates :condition_id, numericality: { other_than: 1 , message: "can't be blank" }
-
 end

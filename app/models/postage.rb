@@ -8,9 +8,4 @@ class Postage < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-
-  include ActiveModel::Validations
-  validates :postage_id, :integer, presence: true
-  validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"}
-
 end

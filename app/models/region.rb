@@ -20,9 +20,4 @@ class Region < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-
-  include ActiveModel::Validations
-  validates :region_id, :integer, presence: true
-  validates :region_id, numericality: { other_than: 1 , message: "can't be blank"}
-
 end

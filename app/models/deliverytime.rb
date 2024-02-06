@@ -9,9 +9,4 @@ class Deliverytime < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-
-  include ActiveModel::Validations
-  validates :delivery_time_id, :integer, presence: true
-  validates :delivery_time_id, numericality: { other_than: 1 , message: "can't be blank"}
-
 end

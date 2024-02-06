@@ -41,7 +41,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors[:detail]).to include('must be within 1000 characters')
 
-          # 商品の説明が1000文字の場合
+        # 商品の説明が1000文字の場合
         @item.detail = 'A' * 1000
         @item.valid?
         expect(@item.errors[:detail]).to_not include('must be within 1000 characters')
@@ -51,8 +51,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category please select a category")
       end
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category please select a category")
+      end
       it '商品の状態の選択が必須であること' do
         @item.condition_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition please select a condition")
+      end
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition please select a condition")
       end
@@ -61,13 +71,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage please select a postage")
       end
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.postage_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postage please select a postage")
+      end
       it '発送元の地域の選択が必須であること' do
         @item.region_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Region please select a region")
       end
+      it '発送元の地域に「---」が選択されている場合は出品できない' do
+        @item.region_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Region please select a region")
+      end
       it '発送までの日数の選択が必須であること' do
         @item.delivery_time_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery time please select a delivery_time")
+      end
+      it '発送までの日数に「---」が選択されている場合は出品できない' do
+        @item.delivery_time_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time please select a delivery_time")
       end
@@ -77,7 +102,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '価格の入力は半角数字のみであること' do
-        @item.price = '１２３４'
+        @item.price = '１２３４５'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price are half-width numbers only")
       end
@@ -90,6 +115,11 @@ RSpec.describe Item, type: :model do
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be between ¥300 and ¥9,999,999")
+      end
+      it 'userが紐付いていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
