@@ -127,6 +127,7 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+    <% if @items.any? %>
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to "#" do %>
@@ -143,12 +144,7 @@
                 <%= item.item_name %>
               </h3>
               <div class='item-price'>
-                <span><%= item.price %>円<br>
-                  <%# postage_idが2なら着払い(購入者負担)、postage_idが3なら送料込み(出品者負担)と表示 %>
-                  <% if item.postage_id.present? %>
-                    <%= Postage.find(item.postage_id).name %>
-                  <% end %>
-                </span>
+                <span><%= "#{item.price}" %>円<br><%= "#{item.postage.name}" %></span>
                 <div class='star-btn'>
                   <%= image_tag "star.png", class:"star-icon" %>
                   <span class='star-count'>0</span>
@@ -158,19 +154,7 @@
           <% end %>
         </li>
       <% end %>
-
-  <% if @items.any? %>
-    <%# 商品がある場合の表示 %>
-    <ul class='item-lists'>
-      <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to "#" do %>
-            <!-- 商品の表示内容 -->
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
+    <% else %>
     <%# 商品がない場合の表示（ダミー商品） %>
     <ul class='item-lists'>
       <li class='list'>
