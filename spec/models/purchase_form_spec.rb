@@ -30,12 +30,12 @@ RSpec.describe PurchaseForm, type: :model do
       it '都道府県が必須であること' do
         @purchaseform.region_id = ''
         @purchaseform.valid?
-        expect(@purchaseform.errors.full_messages).to include("Region please select a region")
+        expect(@purchaseform.errors.full_messages).to include('Region please select a region')
       end
       it '都道府県が「---」が選択されている場合は購入できない' do
         @purchaseform.region_id = '1'
         @purchaseform.valid?
-        expect(@purchaseform.errors.full_messages).to include("Region please select a region")
+        expect(@purchaseform.errors.full_messages).to include('Region please select a region')
       end
       it '市区町村が必須であること' do
         @purchaseform.municipality = ''
@@ -55,12 +55,12 @@ RSpec.describe PurchaseForm, type: :model do
       it '電話番号は、10桁以上11桁以内のみ保存可能なこと' do
         @purchaseform.phone_number = '090123456'
         @purchaseform.valid?
-        expect(@purchaseform.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
+        expect(@purchaseform.errors.full_messages).to include('Phone number is too short (minimum is 10 characters)')
       end
       it '電話番号は、半角数値のみ保存可能なこと' do
         @purchaseform.phone_number = '０９０１２３４５６７８'
         @purchaseform.valid?
-        expect(@purchaseform.errors.full_messages).to include("Phone number is not a number")
+        expect(@purchaseform.errors.full_messages).to include('Phone number is not a number')
       end
       it 'userが紐付いていなければ購入できない' do
         @purchaseform.user = nil
@@ -81,10 +81,9 @@ RSpec.describe PurchaseForm, type: :model do
   end
 end
 
-
-    #it 'クレジットカード情報が必須であること' do
-    #end
-    #it 'クレジットカードの有効期限が必須であること' do
-    #end
-    #it 'セキュリティコードが必須であること' do
-    #end
+# it 'クレジットカード情報が必須であること' do
+# end
+# it 'クレジットカードの有効期限が必須であること' do
+# end
+# it 'セキュリティコードが必須であること' do
+# end
