@@ -2,6 +2,11 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
 
+  def sold_out?
+    @item == 0
+  end
+
+
   belongs_to :user
   has_one_attached :image
   belongs_to :category, class_name: 'Category'
@@ -9,6 +14,7 @@ class Item < ApplicationRecord
   belongs_to :postage, class_name: 'Postage'
   belongs_to :region, class_name: 'Region'
   belongs_to :delivery_time, class_name: 'Deliverytime'
+  has_one :purchase
 
   with_options presence: true do
     validates :image
