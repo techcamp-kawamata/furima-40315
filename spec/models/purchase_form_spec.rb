@@ -80,10 +80,3 @@ RSpec.describe PurchaseForm, type: :model do
     end
   end
 end
-
-# it 'クレジットカード情報が必須であること' do
-# end
-# it 'クレジットカードの有効期限が必須であること' do
-# end
-# it 'セキュリティコードが必須であること' do
-# end
