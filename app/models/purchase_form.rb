@@ -15,8 +15,8 @@ class PurchaseForm
   end
 
   def save
-    purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    Address.create(post_code: post_code, region_id: region_id, municipality: municipality, house_number: house_number,
-                   phone_number: phone_number, purchase_id: purchase.id)
+    purchase = Purchase.create(item_id:, user_id:)
+    Address.create(post_code:, region_id:, municipality:, house_number:,
+                   building_name:, phone_number:, purchase_id: purchase.id)
   end
 end

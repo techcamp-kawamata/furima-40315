@@ -63,6 +63,11 @@ RSpec.describe PurchaseForm, type: :model do
         @purchaseform.valid?
         expect(@purchaseform.errors.full_messages).to include('Phone number is too short (minimum is 10 characters)')
       end
+      it '電話番号は、12桁以上では保存できないこと' do
+        @purchaseform.phone_number = '090123456789'
+        @purchaseform.valid?
+        expect(@purchaseform.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+      end
       it '電話番号は、半角数値のみ保存可能なこと' do
         @purchaseform.phone_number = '０９０１２３４５６７８'
         @purchaseform.valid?
