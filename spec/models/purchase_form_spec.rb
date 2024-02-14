@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PurchaseForm, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @item = FactoryBot.create(:item, user: @user)
+    @item = FactoryBot.create(:item)
     @purchaseform = FactoryBot.build(:purchase_form, user_id: @user.id, item_id: @item.id)
   end
 
