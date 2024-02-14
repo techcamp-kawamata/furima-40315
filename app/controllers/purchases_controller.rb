@@ -19,10 +19,10 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchaseform = PurchaseForm.new(purchase_params)
+    @purchaseform = PurchaseForm.new(purchase_params.merge(item_id: @item.id, user_id: current_user.id))
     if @purchaseform.valid?
       pay_item
-      @purchaseform.save(item_id: @item.id, user_id: current_user.id)
+      @purchaseform.save
       redirect_to root_path
     else
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']

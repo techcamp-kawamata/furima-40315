@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :purchaseform, class: 'PurchaseForm' do
+  factory :purchase_form do
     post_code     { '123-4567' }
     region_id     { 15 }
     municipality  { '横浜市緑区' }
@@ -8,7 +8,5 @@ FactoryBot.define do
     phone_number  { '09012345678' }
     price         { 3000 }
     token         { 'tok_abcdefghijk00000000000000000' }
-    association :user
-    association :item
   end
 end

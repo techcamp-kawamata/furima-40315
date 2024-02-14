@@ -2,12 +2,18 @@ require 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
-    @purchaseform = FactoryBot.build(:purchaseform)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item, user: @user)
+    @purchaseform = FactoryBot.build(:purchase_form, user_id: @user.id, item_id: @item.id)
   end
 
   describe '商品購入' do
     context '新規購入できるとき' do
       it '全て正常な場合' do
+        expect(@purchaseform).to be_valid
+      end
+      it '建物名の入力がなくても登録できる' do
+        @purchaseform.building_name = ''
         expect(@purchaseform).to be_valid
       end
     end
@@ -63,14 +69,14 @@ RSpec.describe PurchaseForm, type: :model do
         expect(@purchaseform.errors.full_messages).to include('Phone number is not a number')
       end
       it 'userが紐付いていなければ購入できない' do
-        @purchaseform.user = nil
+        @purchaseform.user_id = nil
         @purchaseform.valid?
         expect(@purchaseform.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐付いていなければ購入できない' do
-        @purchaseform.user = nil
+        @purchaseform.item_id = nil
         @purchaseform.valid?
-        expect(@purchaseform.errors.full_messages).to include("User can't be blank")
+        expect(@purchaseform.errors.full_messages).to include("Item can't be blank")
       end
       it 'tokenが空では登録できない' do
         @purchaseform.token = nil
